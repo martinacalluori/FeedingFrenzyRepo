@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Feeding Frenzy</title>
+        <!--Add Phaser Framework library-->
+        <script src="phaser.min.js"></script>
+        <!--Add custom stylesheet-->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+    <div id="phaser-canvas"></div>
+  <!--Custom Javascript-->
+  <script type="text/javascript">
+
+    window.onload = function() {
+      var game = new Phaser.Game(720 , 960, Phaser.AUTO, 'phaser-canvas', {
+        preload: preload,
+        create: create
+      });
+
+      //  The Google WebFont Loader will look for this object, so create it before loading the script.
+      WebFontConfig = {
+
+      //  'active' means all requested fonts have finished loading
+      //  We set a 1 second delay before calling 'createText'.
+      //  For some reason if we don't the browser cannot render the text the first time it's created.
+      active: function() { game.time.events.add(Phaser.Timer.SECOND, createText, this); },
+
+      //  The Google Fonts we want to load (specify as many as you like in the array)
+      google: {
+        families: ['Rancho']
+      }
+
+    }; //end webFontConfig
+      
+      function preload () {
+
+        // Load Graphics
+
+    game.load.image('background', 'images/background.png');
+
+    game.load.image('owlIntro', 'images/bird-icon.png');
+    game.load.image('birdIntro', 'images/bird-icon-small.png');    
+    game.load.image('grass', 'images/grass.png' );
+    game.load.image('rightTree', 'images/rightTree.png' );
+    game.load.image('leftTree', 'images/leftTree.png' );
+
+     game.load.image('branch5Intro', 'images/branch5.png' );
+
+    game.load.image('birdBranchIntro', 'images/birdBranch.png' );
+    
+
+    game.load.image('nestIntro', 'images/nest.png' );
+    game.load.image('wormIntro', 'images/worm.png' );
+
+    game.load.image('cloud1Intro', 'images/cloud.png' );
+    game.load.image('cloud2Intro', 'images/cloud.png' );
+    game.load.image('cloud3Intro', 'images/cloud.png' );
+
+    game.load.image('controls', 'images/controls.png' );
+
+    game.load.spritesheet('playButtonIntro', 'images/play.png' , 172, 70);
+
+
+
+
+    //  Load the Google WebFont Loader script
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+
+
+      } // end preload 
+      
+      function create () {
+
+
+        // Add Graphics
+
+         //Clouds
+
+        var sBackground = game.add.sprite(0, 0, 'background');
+
+        var sCloud1Intro = game.add.sprite(380, 20, 'cloud1Intro');
+        var sCloud2Intro = game.add.sprite(102, 184, 'cloud2Intro');
+        var sCloud3Intro = game.add.sprite(304, 512, 'cloud3Intro');
+
+
+        var sGrass = game.add.sprite(0, 890, 'grass');
+
+        var sWorm = game.add.sprite(591, 911, 'worm');
+
+
+        //Branches
+
+       var sbranch5Intro = game.add.sprite(0, 553, 'branch5Intro');
+       var sbirdBranchIntro = game.add.sprite(401, 200, 'birdBranchIntro');       
+       //Birds
+        var sNest = game.add.sprite(50, 400, 'nest');
+        var sOwlIntro = game.add.sprite(408, 62, 'owlIntro');
+
+        var sControls = game.add.sprite(401, 550, 'controls');
+
+
+        // var sPlay = game.add.sprite(460, 700, 'Play');
+
+      // Buttons
+
+      var btPlayIntro = game.add.button(460, 700, 
+        'playButtonIntro', actionOnClick, this, 2 , 0, 1);
+        
+      } // end create 
+
+      function actionOnClick(){
+        console.log('works');
+      }
+
+      function createText() {
+        //add text
+        var titleStr = 'Feeding Frenzy!';
+        var txTitle = game.add.text(35, 100, titleStr);
+
+        txTitle.fill = '#B65CFB';
+        txTitle.fontSize = 52;
+        txTitle.font = 'Rancho';
+
+        var instStr = 'Grab the worms and bring them to your nest  to feed your babies!';
+        var txInst = game.add.text(30, 390, instStr);
+
+        txInst.fill = 'black';
+        txInst.fontSize = 32;
+        txInst.font = 'Rancho';
+
+
+        var instrStr = 'Feed them enough before time runs out! Avoid the Obstacles!';
+        var txInstr = game.add.text(30, 430, instrStr);
+
+        txInstr.fill = 'black';
+        txInstr.fontSize = 32;
+        txInstr.font = 'Rancho';
+
+
+
+
+
+      } //end create text 
+
+    //   function over(item) {
+
+    // playStr.fill = "#ffff44";
+    
+    // } //end hover
+
+      
+    }; // end window.onload
+
+    </script>
+
+    </body>
+</html>
